@@ -2,8 +2,13 @@
 var SongQueue = Songs.extend({
    initialize: function(){
    this.on('ended', function(song){
-      console.log(song.get('url'));
+    if(song === undefined) {
+      throw Error('EndedEventTriggeredWithoutContext');
+    }
      this.remove(song);
+     if(this.size()){
+      this.playFirst();
+     }
    });
    this.on('dequeue', function(song){
      this.remove(song);
