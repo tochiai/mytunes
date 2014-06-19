@@ -38,4 +38,17 @@ describe('SongModel', function() {
       expect(model.trigger).to.have.been.calledWith('ended', model);
     });
   });
+  describe('initialize', function() {
+    it('contains null values for attributes if constructed with no args', function() {
+      var newSong = new SongModel();
+      expect(newSong.get('url')).to.eql(null);
+      expect(newSong.get('title')).to.eql(null);
+      expect(newSong.get('artist')).to.eql(null);
+    });
+    it('contains values for attributes consistent with its input', function() {
+      expect(model.get('url')).to.eql('/test/testsong.mp3');
+      expect(model.get('title')).to.eql('test song');
+      expect(model.get('artist')).to.eql('data');
+    });
+  });
 });
